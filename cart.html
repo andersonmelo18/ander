@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Carrinho - Monster Suplementos</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav {
+    background-color: #1a237e;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+  nav .search-container {
+    flex: 1 1 250px;
+    max-width: 300px;
+  }
+  nav .search-container input[type="search"] {
+    width: 100%;
+    padding: 0.4rem 0.75rem;
+    border-radius: 20px;
+    border: none;
+    font-size: 1rem;
+  }
+  nav ul.nav-links {
+    display: flex;
+    flex: 3 1 auto;
+    justify-content: center;
+    gap: 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  nav ul.nav-links li {
+    position: relative;
+  }
+  nav ul.nav-links li a {
+    color: #c5cae9;
+    transition: color 0.3s ease;
+    padding: 0.3rem 0.5rem;
+  }
+  nav ul.nav-links li a:hover,
+  nav ul.nav-links li a.active {
+    color: #ffca28;
+  }
+  nav .cart-container {
+    flex: 0 0 auto;
+    margin-left: auto;
+    position: relative;
+  }
+  nav .cart-container button {
+    background: transparent;
+    border: none;
+    color: #c5cae9;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: relative;
+  }
+  nav .cart-container button:hover {
+    color: #ffca28;
+  }
+  nav .cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background-color: #ff5252;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* MAIN CONTENT */
+  main {
+    flex: 1 0 auto;
+    padding: 2rem 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgb(0 0 0 / 0.1);
+  }
+
+  footer {
+    background-color: #1a237e;
+    color: #c5cae9;
+    text-align: center;
+    padding: 1rem;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+
+  #cart h2 {
+    color: #1a237e;
+    margin-bottom: 1rem;
+  }
+  #cart .cart-items {
+    max-width: 600px;
+    margin: 0 auto;
+    border-top: 2px solid #1a237e;
+  }
+  #cart .cart-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ccc;
+  }
+  #cart .cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+  }
+  #cart .cart-item-details {
+    flex-grow: 1;
+  }
+  #cart .cart-item-details h4 {
+    margin: 0;
+    color: #283593;
+  }
+  #cart .cart-item-details p {
+    margin: 4px 0 0;
+    color: #555;
+  }
+  #cart .cart-item-actions {
+    text-align: right;
+  }
+  #cart .cart-item-actions button {
+    background-color: transparent;
+    border: none;
+    color: #e53935;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  #cart .cart-summary {
+    margin-top: 1rem;
+    text-align: right;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  #cart .empty-cart {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 2rem;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="search-container">
+    <input type="search" id="searchInput" placeholder="Buscar suplementos..." aria-label="Buscar suplementos" />
+  </div>
+  <ul class="nav-links" role="menubar" aria-label="Main navigation">
+    <li role="none"><a href="index.html" role="menuitem" data-page="home">Início</a></li>
+    <li role="none"><a href="sobre.html" role="menuitem" data-page="about">Sobre Nós</a></li>
+    <li role="none"><a href="produtos.html" role="menuitem" data-page="products">Nossos Produtos</a></li>
+    <li role="none"><a href="dicas.html" role="menuitem" data-page="tips">Dicas</a></li>
+    <li role="none"><a href="login.html" role="menuitem" data-page="login">Entrar</a></li>
+  </ul>
+  <div class="cart-container" role="region" aria-label="Carrinho de Compras">
+    <button id="cartButton" aria-haspopup="true" aria-controls="cart" aria-expanded="false" title="Carrinho de Compras">
+      🛒
+      <span class="cart-badge" id="cartCount" aria-live="polite" aria-atomic="true">0</span>
+    </button>
+  </div>
+</nav>
+
+<main id="mainContent" tabindex="-1" role="main">
+  <section id="cart" tabindex="0">
+    <h2>Seu Carrinho</h2>
+    <div class="cart-items" aria-live="polite" aria-relevant="all">
+      <p class="empty-cart">Seu carrinho está vazio.</p>
+    </div>
+    <div class="cart-summary" style="display:none;">Total: <span id="cartTotal"></span></div>
+  </section>
+</main>
+
+<footer>
+        <p>© 2k25 Monster Suplementos. Todos os direitos reservados.</p>
+        <p>
+            Siga-nos:
+            <a href="https://github.com/" target="_blank" rel="noopener" aria-label="Github" tabindex="0">GitHub</a> |
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"
+                tabindex="0">Facebook</a> |
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"
+                tabindex="0">Instagram</a>
+        </p>
+    </footer>
+
+<script>
+  const productsData = [
+    { id: 1, name: 'Whey Protein Isolado', description: 'Proteína isolada de alta qualidade para ganho muscular rápido.', price: 129.90, image: './Fotos/whey.webp' },
+    { id: 2, name: 'Creatina Monohidratada', description: 'Aumente sua força e energia nas atividades físicas.', price: 69.99, image: './Fotos/creatina.webp' },
+    { id: 3, name: 'BCAA 2:1:1', description: 'Aminoácidos essenciais para recuperação muscular rápida.', price: 89.50, image: './Fotos/bcaa.webp' },
+    { id: 4, name: 'Glutamina', description: 'Ajuda na recuperação muscular e no sistema imunológico.', price: 59.00, image: './Fotos/glutamina.webp' },
+    { id: 5, name: 'Pré-treino', description: 'Energia e foco para seus treinos mais intensos.', price: 79.90, image: './Fotos/pretreino.webp' }
+  ];
+
+  const navLinks = document.querySelectorAll('nav ul.nav-links a');
+  const cartButton = document.getElementById('cartButton');
+  const cartCount = document.getElementById('cartCount');
+  const cartItemsContainer = document.querySelector('#cart .cart-items');
+  const cartSummaryContainer = document.querySelector('#cart .cart-summary');
+  const cartTotalElement = document.getElementById('cartTotal');
+
+  let cart = localStorage.getItem('supplementsCart') ? JSON.parse(localStorage.getItem('supplementsCart')) : [];
+
+  function updateCartCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
+    cartButton.setAttribute('aria-label', `Carrinho de Compras, ${totalItems} item${totalItems !== 1 ? 's' : ''}`);
+  }
+
+  function formatPrice(value) {
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  function removeFromCart(productId) {
+    cart = cart.filter(item => item.productId !== productId);
+    saveCart();
+    renderCart();
+    updateCartCount();
+  }
+
+  function calculateCartTotal() {
+    let total = 0;
+    cart.forEach(item => {
+      const product = productsData.find(p => p.id === item.productId);
+      if (product) {
+        total += product.price * item.quantity;
+      }
+    });
+    return total;
+  }
+
+  function renderCart() {
+    cartItemsContainer.innerHTML = cart.length === 0 ? `<p class="empty-cart">Seu carrinho está vazio.</p>` : '';
+    cart.forEach(item => {
+      const product = productsData.find(p => p.id === item.productId);
+      if (product) {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" />
+          <div class="cart-item-details">
+            <h4>${product.name}</h4>
+            <p>Preço unitário: ${formatPrice(product.price)}</p>
+            <p>Quantidade: ${item.quantity}</p>
+          </div>
+          <div class="cart-item-actions">
+            <button aria-label="Remover ${product.name} do carrinho" data-product-id="${product.id}">Remover</button>
+          </div>
+        `;
+        cartItemsContainer.appendChild(cartItem);
+      }
+    });
+
+    if (cart.length > 0) {
+      cartSummaryContainer.style.display = 'block';
+      cartTotalElement.textContent = formatPrice(calculateCartTotal());
+      // Attach event listeners to remove buttons
+      document.querySelectorAll('#cart .cart-item-actions button').forEach(button => {
+        button.addEventListener('click', e => {
+          const productId = parseInt(e.target.getAttribute('data-product-id'));
+          removeFromCart(productId);
+        });
+      });
+    } else {
+      cartSummaryContainer.style.display = 'none';
+    }
+  }
+
+  function saveCart() {
+    localStorage.setItem('supplementsCart', JSON.stringify(cart));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === 'cart.html') {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+    renderCart();
+    updateCartCount();
+  });
+
+  cartButton.addEventListener('click', () => {
+  });
+
+</script>
+
+</body>
+</html>

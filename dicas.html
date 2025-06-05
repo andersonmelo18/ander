@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dicas - Monster Suplementos</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav {
+    background-color: #1a237e;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+  nav .search-container {
+    flex: 1 1 250px;
+    max-width: 300px;
+  }
+  nav .search-container input[type="search"] {
+    width: 100%;
+    padding: 0.4rem 0.75rem;
+    border-radius: 20px;
+    border: none;
+    font-size: 1rem;
+  }
+  nav ul.nav-links {
+    display: flex;
+    flex: 3 1 auto;
+    justify-content: center;
+    gap: 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  nav ul.nav-links li {
+    position: relative;
+  }
+  nav ul.nav-links li a {
+    color: #c5cae9;
+    transition: color 0.3s ease;
+    padding: 0.3rem 0.5rem;
+  }
+  nav ul.nav-links li a:hover,
+  nav ul.nav-links li a.active {
+    color: #ffca28;
+  }
+  nav .cart-container {
+    flex: 0 0 auto;
+    margin-left: auto;
+    position: relative;
+  }
+  nav .cart-container button {
+    background: transparent;
+    border: none;
+    color: #c5cae9;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: relative;
+  }
+  nav .cart-container button:hover {
+    color: #ffca28;
+  }
+  nav .cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background-color: #ff5252;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  main {
+    flex: 1 0 auto;
+    padding: 2rem 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgb(0 0 0 / 0.1);
+  }
+
+  footer {
+    background-color: #1a237e;
+    color: #c5cae9;
+    text-align: center;
+    padding: 1rem;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+
+  #tips h2 {
+    color: #1a237e;
+    margin-bottom: 1rem;
+  }
+  #tips ul {
+    list-style: disc inside;
+  }
+  #tips li {
+    margin-bottom: 0.9rem;
+    font-size: 1.1rem;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="search-container">
+    <input type="search" id="searchInput" placeholder="Buscar suplementos..." aria-label="Buscar suplementos" />
+  </div>
+  <ul class="nav-links" role="menubar" aria-label="Main navigation">
+    <li role="none"><a href="index.html" role="menuitem" data-page="home">Início</a></li>
+    <li role="none"><a href="sobre.html" role="menuitem" data-page="about">Sobre Nós</a></li>
+    <li role="none"><a href="produtos.html" role="menuitem" data-page="products">Nossos Produtos</a></li>
+    <li role="none"><a href="dicas.html" role="menuitem" data-page="tips" class="active">Dicas</a></li>
+    <li role="none"><a href="login.html" role="menuitem" data-page="login">Entrar</a></li>
+  </ul>
+  <div class="cart-container" role="region" aria-label="Carrinho de Compras">
+    <button id="cartButton" aria-haspopup="true" aria-controls="cart" aria-expanded="false" title="Carrinho de Compras">
+      🛒
+      <span class="cart-badge" id="cartCount" aria-live="polite" aria-atomic="true">0</span>
+    </button>
+  </div>
+</nav>
+
+<main id="mainContent" tabindex="-1" role="main">
+  <section>
+            <h1>Dicas de Suplementos e Treinos Específicos</h1>
+            <p>
+                Para quem deseja maximizar resultados e alcançar seus objetivos de forma saudável, combinar suplementos
+                adequados com treinos específicos é fundamental. Veja abaixo algumas dicas importantes para diferentes
+                perfis:
+            </p>
+            <h2>Suplementos Essenciais</h2>
+            <ul>
+                <li><strong>Whey Protein:</strong> Auxilia na recuperação muscular e ganho de massa magra, indicado para
+                    quem pratica musculação e exercícios de força.</li>
+                <li><strong>BCAAs:</strong> Aminoácidos essenciais que ajudam a reduzir a fadiga e melhorar a
+                    recuperação muscular durante e após os treinos.</li>
+                <li><strong>Creatina:</strong> Melhora a força muscular e resistência para treinos intensos e de alta
+                    performance.</li>
+                <li><strong>Multivitamínicos:</strong> Suporte geral à saúde, garantindo micronutrientes essenciais para
+                    o funcionamento do corpo.</li>
+                <li><strong>Ômega 3:</strong> Ajuda na saúde cardiovascular e redução de inflamações, importante para
+                    recuperação e bem-estar geral.</li>
+            </ul>
+            <h2>Treinos Específicos</h2>
+            <h3>Hipertrofia Muscular (Ganho de Massa)</h3>
+            <ul>
+                <li>Faça exercícios com pesos moderados a altos e séries de 6 a 12 repetições.</li>
+                <li>Priorize exercícios compostos como agachamento, levantamento terra e supino.</li>
+                <li>Descanse entre 60 a 90 segundos entre as séries para estimular crescimento muscular.</li>
+                <li>Combine com ingestão adequada de proteínas para potencializar os ganhos.</li>
+            </ul>
+            <h3>Treino Funcional</h3>
+            <ul>
+                <li>Exercícios que envolvem movimentos naturais, melhora do equilíbrio e flexibilidade.</li>
+                <li>Inclua circuitos com peso corporal, como agachamentos, flexões e abdominais.</li>
+                <li>Treinos curtos e intensos com pouco tempo de descanso.</li>
+                <li>Ideal para melhorar condicionamento físico geral e prevenção de lesões.</li>
+            </ul>
+            <h3>Resistência e Cardiovascular</h3>
+            <ul>
+                <li>Corrida, ciclismo, natação ou HIIT são ótimas opções para melhorar resistência.</li>
+                <li>Treinos aeróbicos de 30 a 60 minutos, 3 a 5 vezes por semana.</li>
+                <li>Combine com suplementos que ajudam na recuperação, como BCAAs e antioxidantes.</li>
+            </ul>
+            <p>
+                Lembre-se sempre de consultar um profissional de saúde ou educador físico antes de iniciar qualquer
+                suplementação ou programa de treino. Cada pessoa tem necessidades e objetivos únicos, e o acompanhamento
+                adequado garante segurança e melhores resultados.
+            </p>
+
+
+        </section>
+</main>
+
+<footer>
+        <p>© 2k25 Monster Suplementos. Todos os direitos reservados.</p>
+        <p>
+            Siga-nos:
+            <a href="https://github.com/" target="_blank" rel="noopener" aria-label="Github" tabindex="0">GitHub</a> |
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"
+                tabindex="0">Facebook</a> |
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"
+                tabindex="0">Instagram</a>
+        </p>
+    </footer>
+
+<script>
+  const navLinks = document.querySelectorAll('nav ul.nav-links a');
+  const cartButton = document.getElementById('cartButton');
+  const cartCount = document.getElementById('cartCount');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    navLinks.forEach(link => {
+      if (link.getAttribute('href') === 'dicas.html') {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  });
+
+  let cart = [];
+
+  function updateCartCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
+    cartButton.setAttribute('aria-label', `Carrinho de Compras, ${totalItems} item${totalItems !== 1 ? 's' : ''}`);
+  }
+
+  cartButton.addEventListener('click', () => {
+    window.location.href = 'cart.html';
+  });
+
+  updateCartCount();
+</script>
+
+</body>
+</html>
